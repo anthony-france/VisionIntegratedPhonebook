@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading"><h2>Help</h2></div>
+    <div class="panel-body">
+        <p>This page describes how attributes are used to query users and contacts from AD to display these pages.</p>
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Facility Employees</div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                ObjectClass
+            </dt>
+            <dd>
+                user
+            </dd>
+            <dt>
+                company
+            </dt>
+            <dd>
+                Required: string = "Vision Integrated Graphics"
+            </dd>
+            <dt>
+                department
+            </dt>
+            <dd>
+                Required : string variable
+            </dd>
+            <dt>
+                physicalDeliveryOfficeName (Office)
+            </dt>
+            <dd>
+                Optional: string variable
+            </dd>
+        </dl>
+
+        <div class="alert alert-success alert-dismissable">Company must be set to "Vision Integrated Graphics" and department must be populated for employees to be displayed.</div>
+        <p>Facility Employees make up the largest bulk of the records used on this site.  Employee information should all be included and maintained on the AD account.  The company and department attributes are required for an employee to show up on the main page.  An office location is required for them to appear on the facilities detail pages.  A user without an office set will display on the main page but not on the facilies detail.</p>
+        <img class="img-thumbnail" src="/Content/Images/help.jpg" />
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Facility Entries</div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                ObjectClass
+            </dt>
+            <dd>
+                contact
+            </dd>
+            <dt>
+                company
+            </dt>
+            <dd>
+                Vision Integrated Properties
+            </dd>
+            <dt>
+                title
+            </dt>
+            <dd>
+                building
+            </dd>
+            <dt>
+                l (city)
+            </dt>
+            <dd>
+                Required: string "{name}"
+            </dd>
+            <dt>
+                wWWHomePage
+            </dt>
+            <dd>
+                Required: string "/Facility/{name}"
+            </dd>
+        </dl>
+        <div class="alert alert-success alert-dismissable">Facility {name} should match a physicalDeliveryOfficeAddress of a set of contacts/users.  This will be used to filter users based on their office location.  This is used to create the link to display the facility and servs as the filter to use when filtering users and contacts.</div>
+        <p>The facility entrys are the items used to display the facility locations at the top of the main page and are used on the facility details pages next to the list of additional contacts.</p>
+        <div class="alert alert-info alert-dismissable"><p>With stratigic use of field settings, or lack of, you can have the facility display on the main page, while linking to another facility, and displaying as a contact for the facility.  For example, the TPK Warehouse, it is a seperate building and is displayed on the main page, however when you click on it the link directs you to the Tinly Park location.  This is because the users are currently considered as working in that facility and it is then displayed as a contact for Tinley Park.</p></div>
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Facility Added Contacts</div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                ObjectClass
+            </dt>
+            <dd>
+                contact
+            </dd>
+            <dt>
+                physicalDeliveryOfficeName (Office)
+            </dt>
+            <dd>
+                Required: string variable
+            </dd>
+        </dl>
+
+        <div class="alert alert-success alert-dismissable">physicalDeliveryOfficeAddress (Office) should match a city of the facility to be displayed with.</div>
+        <p>A 'facility added contact' is a contact that is important to that facility.  Conference Rooms, Night Contact, Alarm, and Utilties are all types of items that are perfect for this area.</p>
+    </div>
+</div>
+
+

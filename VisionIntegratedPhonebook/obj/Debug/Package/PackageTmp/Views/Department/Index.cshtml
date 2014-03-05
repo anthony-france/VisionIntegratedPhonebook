@@ -1,0 +1,20 @@
+﻿@model VisionIntegratedPhonebook.Models.ViewModelDepartmentIndex
+
+@{
+    ViewBag.Title = "Departments";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Departments</div>
+    <div class="panel-body">
+        <div class="list-group">
+            @foreach (KeyValuePair<string, int> d in Model.departments)
+            {
+                <a class="list-group-item" href="/Department/@d.Key">
+                    <span class="badge">@d.Value</span>
+                    @d.Key
+                </a>
+            }
+        </div>
+    </div>
+</div>

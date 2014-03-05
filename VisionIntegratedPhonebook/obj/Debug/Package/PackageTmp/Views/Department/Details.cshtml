@@ -1,0 +1,48 @@
+﻿@using VisionIntegratedPhonebook.Models
+@model VisionIntegratedPhonebook.Models.ViewModelDepartmentDetails
+
+@{
+    ViewBag.Title = @Model.Department + " Department";
+}
+
+<div class="directory">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><img src="/Content/Images/logo.png" title="logo" /></div>
+        <div class="panel-body">
+            <h3>@Model.Department</h3>
+        </div>
+      
+        <table id="directory" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name <span class="badge">@Model.people.Count()</span></th>
+                    <th>Title</th>
+                    <th>Office</th>
+                    <th>Phone</th>
+                    <th>E-Mail</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Contact item in Model.people)
+                {
+                    <tr>
+                        <td><img class="img-circle unveil" src="/Content/Images/ajax-loader.gif" data-src="/Contact/Image?dn=@item.DistinguishedName" />@Html.ActionLink(@item.DisplayName, "Details", "Contact", new { dn = @item.DistinguishedName }, null)</td>
+                        <td>@item.Title</td>
+                        <td><a href="/Facility/@item.Office">@item.Office</a></td>
+                        <td>
+                            @if (!String.IsNullOrEmpty(item.TelephoneNumber))
+                            {
+                                <span class="glyphicon glyphicon-phone-alt"></span> <a href="tel:@item.TelephoneNumber">@item.TelephoneNumber</a><br />
+                            }
+                            @if (!String.IsNullOrEmpty(item.MobileNumber))
+                            {
+                                <span class="glyphicon glyphicon-phone"></span> <a href="tel:@item.MobileNumber">@item.MobileNumber</a>
+                            }
+                        </td>
+                        <td><a href="mailto:@item.EMail">@item.EMail</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

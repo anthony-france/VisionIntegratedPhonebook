@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="VisionIntegratedDirectory" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^c:\\repos\\VisionIntegratedPhonebook\\VisionIntegratedPhonebook\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^c:\\repos\\VisionIntegratedPhonebook\\VisionIntegratedPhonebook\\obj\\Debug\\Package\\PackageTmp$" />
+  </parameter>
+</parameters>

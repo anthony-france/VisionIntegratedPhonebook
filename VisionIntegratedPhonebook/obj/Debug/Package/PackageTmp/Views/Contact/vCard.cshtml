@@ -1,0 +1,19 @@
+﻿@using VisionIntegratedPhonebook.Models
+@model VisionIntegratedPhonebook.Models.ViewModelContactvCard
+
+@{
+    Layout = null;
+}
+
+
+BEGIN:VCARD
+FN:@Html.DisplayFor(model => model.me.DisplayName)
+TITLE:@Html.DisplayFor(model => model.me.Title)
+ORG:@Html.DisplayFor(model => model.me.Department);@Html.DisplayFor(model => model.me.EMail);@Html.DisplayFor(model => model.me.Department)
+TEL;Work;VOICE;MESG;PREF:@Html.DisplayFor(model => model.me.TelephoneNumber)
+TEL;Cell:@Html.DisplayFor(model => model.me.MobileNumber)
+EMAIL;Internet:@Html.DisplayFor(model => model.me.EMail)
+TZ:-0600
+REV:20090401T065518
+VERSION:2.1
+END:VCARD

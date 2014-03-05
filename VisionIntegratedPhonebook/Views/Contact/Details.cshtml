@@ -1,0 +1,171 @@
+﻿@using VisionIntegratedPhonebook.Models
+@model VisionIntegratedPhonebook.Models.ViewModelContactDetail
+
+@{
+    ViewBag.Title = @Model.me.DisplayName + " Details";
+}
+
+
+
+<div class="person-detail">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><img class="img-circle" src="/Contact/Image?dn=@Model.me.DistinguishedName" /> @Html.DisplayFor(model => model.me.DisplayName)</div>
+        <div class="panel-body">
+            <hr />
+            <div class="row">
+                @if (Model.me.Address != null && Model.me.City != null && Model.me.State != null && Model.me.PostalCode != null) { 
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Address
+                        </dt>
+                        <dd>
+                            <address>
+                                <p>@Html.DisplayFor(model => model.me.DisplayName)</p>
+                                <p>@Html.DisplayFor(model => model.me.Address)</p>
+                                <p>@Html.DisplayFor(model => model.me.City), @Html.DisplayFor(model => model.me.State) @Html.DisplayFor(model => model.me.PostalCode)</p>
+                            </address>
+                        </dd>
+                    </dl>
+                </div>
+                }
+                <div class="col-md-5">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.me.TelephoneNumber)
+                        </dt>
+                        <dd>
+                            <span class="glyphicon glyphicon-phone-alt"></span> <a href="tel:@Html.DisplayFor(model => model.me.TelephoneNumber)">@Html.DisplayFor(model => model.me.TelephoneNumber)</a>
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.me.MobileNumber)
+                        </dt>
+                        <dd>
+                            <span class="glyphicon glyphicon-phone"></span> <a href="tel:@Html.DisplayFor(model => model.me.MobileNumber)">@Html.DisplayFor(model => model.me.MobileNumber)</a>
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.me.EMail)
+                        </dt>
+                        <dd>
+                            <a href="mailto:@Html.DisplayFor(model => model.me.EMail)">@Html.DisplayFor(model => model.me.EMail)</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.me.Office)
+                        </dt>
+                        <dd>
+                            <a href="/Facility/@Html.DisplayFor(model => model.me.Office)">@Html.DisplayFor(model => model.me.Office)</a>
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.me.Department)
+                        </dt>
+                        <dd>
+                            <a href="/Department/@Html.DisplayFor(model => model.me.Department)">@Html.DisplayFor(model => model.me.Department)</a>
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.me.Title)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.me.Title)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            @if (Model.me.Description != null) { 
+                <div class="row">
+                    <div class="cold-md-l2">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.me.Description)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.me.Description)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            }
+            <hr />
+            <div class="row">
+                <div class="col-md-10">
+                    @Html.ActionLink("Edit", "Details", new { name = @Model.me.UserPrincipalName }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (@Model.Manager != null) {
+<div class="person-detail-manager">
+    <div class="panel panel-info">
+        <div class="panel-heading">@Html.DisplayNameFor(model => model.me.Manager)</div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.me.DisplayName)</th>
+                    <th>@Html.DisplayNameFor(model => model.me.Department)</th>
+                    <th>@Html.DisplayNameFor(model => model.me.Title)</th>
+                    <th>@Html.DisplayNameFor(model => model.me.Office)</th>
+                    <th>@Html.DisplayNameFor(model => model.me.TelephoneNumber)</th>
+                    <th>@Html.DisplayNameFor(model => model.me.EMail)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img class="img-circle" src="/Contact/Image?dn=@Model.Manager.DistinguishedName" /> @Html.ActionLink(@Model.Manager.DisplayName, "Details", "Contact", new { dn = @Model.Manager.DistinguishedName }, null)</td>
+                    <td><a href="/Department/@Model.Manager.Department">@Model.Manager.Department</a></td>
+                    <td>@Model.Manager.Title</td>
+                    <td><a href="/Facility/@Model.Manager.Office">@Model.Manager.Office</a></td>
+                    <td><a href="tel:@Model.Manager.TelephoneNumber">@Model.Manager.TelephoneNumber</a></td>
+                    <td><a href="mailto:@Model.Manager.EMail">@Model.Manager.EMail</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+}
+
+@if (@Model.DirectReports != null) {
+    if (@Model.DirectReports.Count() > 0) { 
+    <div class="person-detail-reports">
+        <div class="panel panel-info">
+            <div class="panel-heading">@Html.DisplayNameFor(model => model.me.DirectReports) <span class="badge">@Model.DirectReports.Count()</span></div>
+            <table class="table table-striped" id="directory">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.me.DisplayName)</th>
+                        <th>@Html.DisplayNameFor(model => model.me.Department)</th>
+                        <th>@Html.DisplayNameFor(model => model.me.Title)</th>
+                        <th>@Html.DisplayNameFor(model => model.me.Office)</th>
+                        <th>@Html.DisplayNameFor(model => model.me.TelephoneNumber)</th>
+                        <th>@Html.DisplayNameFor(model => model.me.EMail)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var report in @Model.DirectReports)
+                    {
+                        <tr>
+                            <td><img class="img-circle" src="/Contact/Image?dn=@report.DistinguishedName" />@Html.ActionLink(@report.DisplayName, "Details", "Contact", new { dn = @report.DistinguishedName }, null)</td>
+                            <td><a href="/Department/@report.Department">@report.Department</a></td>
+                            <td>@report.Title</td>
+                            <td><a href="/Facility/@report.Office">@report.Office</a></td>
+                            <td><a href="tel:@report.TelephoneNumber">@report.TelephoneNumber</a></td>
+                            <td><a href="mailto:@report.EMail">@report.EMail</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    }
+}
+
+    
+    
+    

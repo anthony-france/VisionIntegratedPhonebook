@@ -1,0 +1,125 @@
+﻿@model VisionIntegratedPhonebook.Models.Person
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="person-detail">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><img class="img-circle" src="/Person/Image?name=@Model.UserPrincipalName" /> @Html.DisplayFor(model => model.DisplayName)</div>
+        <div class="panel-body">
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Department)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Department)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Title)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Office)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Office)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4">
+                    <dl class="dl-horizontal">
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.TelephoneNumber)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.TelephoneNumber)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.EMail)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.EMail)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-10">
+                    @Html.ActionLink("Edit", "Edit", new { name = @Model.UserPrincipalName }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (@Model.Manager != null) {
+<div class="person-detail-manager">
+    <div class="panel panel-info">
+        <div class="panel-heading">@Html.DisplayNameFor(model => model.Manager)</div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.DisplayName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Title)</th>
+                    <th>@Html.DisplayNameFor(model => model.Office)</th>
+                    <th>@Html.DisplayNameFor(model => model.TelephoneNumber)</th>
+                    <th>@Html.DisplayNameFor(model => model.EMail)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img class="img-circle" src="/Person/Image?name=@Model.Manager.UserPrincipalName" /> @Html.ActionLink(@Model.Manager.DisplayName, "Details", "Person", new { name = @Model.Manager.UserPrincipalName }, null)</td>
+                    <td>@Model.Manager.Title</td>
+                    <td>@Model.Manager.Office</td>
+                    <td>@Model.Manager.TelephoneNumber</td>
+                    <td><a href="mailto:@Model.Manager.EMail">@Model.Manager.EMail</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+}
+
+@if (@Model.DirectReports.Count > 0) {
+<div class="person-detail-reports">
+    <div class="panel panel-info">
+        <div class="panel-heading">@Html.DisplayNameFor(model => model.DirectReports)</div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.DisplayName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Title)</th>
+                    <th>@Html.DisplayNameFor(model => model.Office)</th>
+                    <th>@Html.DisplayNameFor(model => model.TelephoneNumber)</th>
+                    <th>@Html.DisplayNameFor(model => model.EMail)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var report in @Model.DirectReports) { 
+                <tr>
+                    <td><img class="img-circle" src="/Person/Image?name=@report.UserPrincipalName" />@Html.ActionLink(@report.DisplayName   , "Details", "Person", new { name = @report.UserPrincipalName }, null)</td>
+                    <td>@report.Title</td>
+                    <td>@report.Office</td>
+                    <td>@report.TelephoneNumber</td>
+                    <td><a href="mailto:@report.EMail">@report.EMail</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+}
+

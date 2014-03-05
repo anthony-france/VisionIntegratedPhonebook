@@ -1,0 +1,36 @@
+﻿@using VisionIntegratedPhonebook.Models
+@model IEnumerable<VisionIntegratedPhonebook.Models.Person>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="directory-index">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h1>Vision Integrated Directory</h1></div>
+
+        <table id="directory" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.DisplayName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Title)</th>
+                    <th>@Html.DisplayNameFor(model => model.Office)</th>
+                    <th>@Html.DisplayNameFor(model => model.TelephoneNumber)</th>
+                    <th>@Html.DisplayNameFor(model => model.EMail)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Person item in Model)
+                {
+                    <tr>
+                        <td><img class="img-circle" src="/Person/Image?name=@item.UserPrincipalName" />@Html.ActionLink(@item.DisplayName, "Details", "Person", new { name = @item.UserPrincipalName }, null)</td>
+                        <td>@item.Department</td>
+                        <td>@item.Office</td>
+                        <td>@item.TelephoneNumber</td>
+                        <td><a href="mailto:@item.EMail">@item.EMail</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

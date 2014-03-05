@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="PersonContext-Web.config Connection String" description="PersonContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\v11.0; Initial Catalog=PersonContext-20140219100145; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|PersonContext-20140219100145.mdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="c:\\repos\\VisionIntegratedPhonebook\\VisionIntegratedPhonebook\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='PersonContext']/@connectionString" />
+  </parameter>
+</parameters>

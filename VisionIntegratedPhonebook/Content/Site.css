@@ -1,0 +1,113 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image: url("/Content/Images/bg.jpg");
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.person-detail .panel-heading {
+    font-size: xx-large;
+}
+
+.person-detail .panel-heading img {
+      margin-right: 13px;
+}
+
+.person-detail-manager img {
+    width: 44px;
+    height: auto;
+    margin-right: 7px;
+}
+
+.person-detail-reports img {
+    width: 44px;
+    height: auto;
+    margin-right: 7px;
+}
+
+.directory table img {
+    width: 44px;
+    height: auto;
+    margin-right: 7px;
+}
+
+table#contacts img {
+    width: 22px;
+    height: auto;
+}
+
+table td {
+    vertical-align: middle !important;
+}
+
+
+div.page-chi div.hob {
+    display: none;
+}
+
+div.page-chi div.tpk {
+    display: none;
+}
+
+div.page-tpk div.hob {
+    display: none;
+}
+
+div.page-tpk div.chi {
+    display: none;
+}
+
+div.page-hob div.chi {
+    display: none;
+}
+
+div.page-hob div.tpk {
+    display: none;
+}
+
+
+div.page-help dl.dl-horizontal dt {
+    width: 250px; 
+    text-align: left;
+}
+
+table#contacts {
+    font-size: x-small;
+}

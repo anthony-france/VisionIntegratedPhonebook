@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="VisionIntegratedDirectory" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^c:\\repos\\VisionIntegratedPhonebook\\VisionIntegratedPhonebook\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^c:\\repos\\VisionIntegratedPhonebook\\VisionIntegratedPhonebook\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="PersonContext-Web.config Connection String" description="" value="Data Source=(localdb)\v11.0; Initial Catalog=PersonContext-20140219100145; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|PersonContext-20140219100145.mdf" tags="">
+    <parameterEntry kind="XmlFile" scope="c:\\repos\\VisionIntegratedPhonebook\\VisionIntegratedPhonebook\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='PersonContext']/@connectionString" />
+  </parameter>
+</parameters>

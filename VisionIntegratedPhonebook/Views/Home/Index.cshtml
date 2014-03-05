@@ -1,0 +1,59 @@
+﻿@using VisionIntegratedPhonebook.Models
+@model VisionIntegratedPhonebook.Models.ViewModelHomeIndex
+
+@{
+    ViewBag.Title = "People";
+}
+
+<div class="directory">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><img src="/Content/Images/logo.png" title="logo" /></div>
+        <div class="panel-body">
+            <div class="row">
+                @foreach (Contact item in Model.facilities) { 
+                    <div class="col-md-3 chi">
+                        <h2><a href="@item.Url">@item.DisplayName</a></h2>
+                        <address>
+                            <p>@item.Address</p>
+                            <p>@item.City, @item.State, @item.PostalCode</p>
+                            <p><span class="glyphicon glyphicon-earphone"></span> <a href="tel:@item.TelephoneNumber">@item.TelephoneNumber</a></p>
+                            <p><span class="glyphicon glyphicon-print"></span> @item.FaxNumber</p>
+                        </address>
+                    </div>
+                }
+            </div>
+        </div>
+        <table id="directory" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name <span class="badge">@Model.people.Count()</span></th>
+                    <th>Department</th>
+                    <th>Office</th>
+                    <th>Phone</th>
+                    <th>E-Mail</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Contact item in Model.people)
+                {
+                    <tr>
+                        <td><img class="img-circle unveil" src="/Content/Images/ajax-loader.gif" data-src="/Contact/Image?dn=@item.DistinguishedName" />@Html.ActionLink(@item.DisplayName, "Details", "Contact", new { dn = @item.DistinguishedName }, null)</td>
+                        <td><a href="/Department/@item.Department">@item.Department</a></td>
+                        <td><a href="/Facility/@item.Office">@item.Office</a></td>
+                        <td>
+                            @if (!String.IsNullOrEmpty(item.TelephoneNumber))
+                            {
+                                <span class="glyphicon glyphicon-phone-alt"></span> <a href="tel:@item.TelephoneNumber">@item.TelephoneNumber</a><br />
+                            }
+                            @if (!String.IsNullOrEmpty(item.MobileNumber))
+                            {
+                                <span class="glyphicon glyphicon-phone"></span> <a href="tel:@item.MobileNumber">@item.MobileNumber</a>
+                            }
+                        </td>
+                        <td><a href="mailto:@item.EMail">@item.EMail</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
