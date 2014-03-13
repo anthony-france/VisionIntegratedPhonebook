@@ -13,6 +13,7 @@ namespace VisionIntegratedPhonebook.Controllers
     {
         //
         // GET: /Facility/
+        [OutputCache(Duration = 300, VaryByParam = "*")]
         public ActionResult Index()
         {
             ViewModelFacilityIndex view = new ViewModelFacilityIndex();
@@ -27,7 +28,7 @@ namespace VisionIntegratedPhonebook.Controllers
 
 
         [AllowAnonymous]
-        [OutputCache(Duration = 1, VaryByParam = "*")]
+        [OutputCache(Duration = 300, VaryByParam = "*")]
         public ActionResult Details(string location, string department)
         {
             LDAPSearchObject search = new LDAPSearchObject();

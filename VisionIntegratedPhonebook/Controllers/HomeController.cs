@@ -12,7 +12,7 @@ namespace VisionIntegratedPhonebook.Controllers
     public class HomeController : BaseController
     {
         [AllowAnonymous]
-        [OutputCache(Duration = 1, VaryByParam = "*")]
+        [OutputCache(Duration = 300, VaryByParam = "*")]
         public ActionResult Index()
         {
             ViewModelHomeIndex view = new ViewModelHomeIndex();

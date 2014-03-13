@@ -4,12 +4,15 @@
     
 
     $("form#search input[type=text]").on('input', function (e) {
-        $("div.directory").load(
-            "/Search?q=" + encodeURIComponent(this.value),
-            function () {
-                $("img.unveil").unveil();
-            }
-        );
+
+        if (this.value.length > 3) {
+            $("div.directory").load(
+                "/Search?q=" + encodeURIComponent(this.value),
+                function () {
+                    $("img.unveil").unveil();
+                }
+            );
+        }
     });
 });
 

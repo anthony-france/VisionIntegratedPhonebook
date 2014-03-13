@@ -11,8 +11,7 @@ namespace VisionIntegratedPhonebook.Controllers
 {
     public class DepartmentController : BaseController
     {
-        //
-        // GET: /Facility/
+        [OutputCache(Duration = 300, VaryByParam = "*")]
         public ActionResult Index()
         {
             ViewModelDepartmentIndex view = new ViewModelDepartmentIndex();
@@ -34,9 +33,8 @@ namespace VisionIntegratedPhonebook.Controllers
             return View(view);
         }
 
-
         [AllowAnonymous]
-        [OutputCache(Duration = 1, VaryByParam = "*")]
+        [OutputCache(Duration = 300, VaryByParam = "*")]
         public ActionResult Details(string department, string facility)
         {
             if (string.IsNullOrEmpty(department))

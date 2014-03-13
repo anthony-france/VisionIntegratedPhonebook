@@ -11,7 +11,7 @@ namespace VisionIntegratedPhonebook.Controllers
     public class SearchController : BaseController
     {
         [AllowAnonymous]
-        [OutputCache(Duration = 1, VaryByParam = "*")]
+        [OutputCache(Duration = 300, VaryByParam = "*")]
         [HttpPost]
         public ActionResult Index(string q)
         {
@@ -30,7 +30,7 @@ namespace VisionIntegratedPhonebook.Controllers
         }
 
         [AllowAnonymous]
-        [OutputCache(Duration = 1, VaryByParam = "*")]
+        [OutputCache(Duration = 300, VaryByParam = "*")]
         public ActionResult Index(string q, int? placeholder)
         {
             ViewBag.PageClass = "details";

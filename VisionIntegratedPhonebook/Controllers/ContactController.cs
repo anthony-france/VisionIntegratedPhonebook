@@ -13,7 +13,7 @@ namespace VisionIntegratedPhonebook.Controllers
     public class ContactController : BaseController
     {
         [AllowAnonymous]
-        [OutputCache(Duration = 1, VaryByParam = "*")]
+        [OutputCache(Duration = 300, VaryByParam = "*")]
         public ActionResult Image(string dn)
         {
             Contact p = new Contact();  
@@ -58,7 +58,7 @@ namespace VisionIntegratedPhonebook.Controllers
         //
         // GET: /Person/Details/5
         [AllowAnonymous]
-        [OutputCache(Duration = 1, VaryByParam = "*")]
+        [OutputCache(Duration = 300, VaryByParam = "*")]
         public ActionResult Details(string dn)
         {
             if (String.IsNullOrEmpty(dn))
@@ -88,7 +88,7 @@ namespace VisionIntegratedPhonebook.Controllers
         //
         // GET: /Person/Details/5
         [AllowAnonymous]
-        [OutputCache(Duration = 1, VaryByParam = "*")]
+        [OutputCache(Duration = 300, VaryByParam = "*")]
         public ActionResult vCard(string name)
         {
             if (String.IsNullOrEmpty(name))
