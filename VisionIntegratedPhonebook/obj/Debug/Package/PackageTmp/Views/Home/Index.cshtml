@@ -9,9 +9,9 @@
     <div class="panel panel-primary">
         <div class="panel-heading"><img src="/Content/Images/logo.png" title="logo" /></div>
         <div class="panel-body">
-            <div class="row">
+            <div class="row noprint">
                 @foreach (Contact item in Model.facilities) { 
-                    <div class="col-md-3 chi">
+                    <div class="col-md-3">
                         <h2><a href="@item.Url">@item.DisplayName</a></h2>
                         <address>
                             <p>@item.Address</p>

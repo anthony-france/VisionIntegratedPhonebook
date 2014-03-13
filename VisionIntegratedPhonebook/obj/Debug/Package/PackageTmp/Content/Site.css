@@ -111,3 +111,34 @@ div.page-help dl.dl-horizontal dt {
 table#contacts {
     font-size: x-small;
 }
+
+@media print {
+
+    * {
+        font-size: xx-small;
+    }
+
+    a[href]:after {
+        content: "" !important;
+    }
+
+    .noprint {
+        display: none;
+    }
+
+    table img {
+        display: none;
+    }
+
+    span.badge {
+        display: none;
+    }
+
+    .directory .panel-heading {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+}

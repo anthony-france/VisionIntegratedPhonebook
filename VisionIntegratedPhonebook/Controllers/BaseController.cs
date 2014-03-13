@@ -30,15 +30,23 @@ namespace VisionIntegratedPhonebook.Controllers
                     ds.PropertiesToLoad.Add(a);
                 }
 
-                var results = ds.FindAll();
-                if (results != null && results.Count > 0)
+
+                try
                 {
-                    foreach (SearchResult result in results)
+                    var results = ds.FindAll();
+                    if (results != null && results.Count > 0)
                     {
-                        Contact p = new Contact();
-                        p = processResult(result);
-                        people.Add(p);
+                        foreach (SearchResult result in results)
+                        {
+                            Contact p = new Contact();
+                            p = processResult(result);
+                            people.Add(p);
+                        }
                     }
+                }
+                catch (Exception e)
+                {
+                    
                 }
             }
             return people;
