@@ -101,34 +101,40 @@
     </div>
 </div>
 
-@if (@Model.Manager != null) {
-<div class="person-detail-manager">
-    <div class="panel panel-info">
-        <div class="panel-heading">@Html.DisplayNameFor(model => model.me.Manager)</div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.me.DisplayName)</th>
-                    <th>@Html.DisplayNameFor(model => model.me.Department)</th>
-                    <th>@Html.DisplayNameFor(model => model.me.Title)</th>
-                    <th>@Html.DisplayNameFor(model => model.me.Office)</th>
-                    <th>@Html.DisplayNameFor(model => model.me.TelephoneNumber)</th>
-                    <th>@Html.DisplayNameFor(model => model.me.EMail)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><img class="img-circle" src="/Contact/Image?dn=@Model.Manager.DistinguishedName" /> @Html.ActionLink(@Model.Manager.DisplayName, "Details", "Contact", new { dn = @Model.Manager.DistinguishedName }, null)</td>
-                    <td><a href="/Department/@Model.Manager.Department">@Model.Manager.Department</a></td>
-                    <td>@Model.Manager.Title</td>
-                    <td><a href="/Facility/@Model.Manager.Office">@Model.Manager.Office</a></td>
-                    <td><a href="tel:@Model.Manager.TelephoneNumber">@Model.Manager.TelephoneNumber</a></td>
-                    <td><a href="mailto:@Model.Manager.EMail">@Model.Manager.EMail</a></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+@if (@Model.Managers != null) {
+    if (@Model.Managers.Count() > 0)
+    { 
+        <div class="person-detail-manager">
+            <div class="panel panel-info">
+                <div class="panel-heading">@Html.DisplayNameFor(model => model.me.Manager)</div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.me.DisplayName)</th>
+                            <th>@Html.DisplayNameFor(model => model.me.Department)</th>
+                            <th>@Html.DisplayNameFor(model => model.me.Title)</th>
+                            <th>@Html.DisplayNameFor(model => model.me.Office)</th>
+                            <th>@Html.DisplayNameFor(model => model.me.TelephoneNumber)</th>
+                            <th>@Html.DisplayNameFor(model => model.me.EMail)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var manager in @Model.Managers)
+                        {
+                        <tr>
+                            <td><img class="img-circle" src="/Contact/Image?dn=@manager.DistinguishedName" /> @Html.ActionLink(@manager.DisplayName, "Details", "Contact", new { dn = @manager.DistinguishedName }, null)</td>
+                            <td><a href="/Department/@manager.Department">@manager.Department</a></td>
+                            <td>@manager.Title</td>
+                            <td><a href="/Facility/@manager.Office">@manager.Office</a></td>
+                            <td><a href="tel:@manager.TelephoneNumber">@manager.TelephoneNumber</a></td>
+                            <td><a href="mailto:@manager.EMail">@manager.EMail</a></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
 }
 
 @if (@Model.DirectReports != null) {

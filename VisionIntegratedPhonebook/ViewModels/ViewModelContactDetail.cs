@@ -10,6 +10,6 @@ namespace VisionIntegratedPhonebook.Models
     {
         public Contact me { get; set; }
         public IEnumerable<Contact> DirectReports { get; set; }
-        public Contact Manager { get; set; }
+        public IEnumerable<Contact> Managers { get; set; }
     }
 }

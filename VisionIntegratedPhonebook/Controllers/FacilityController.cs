@@ -63,7 +63,7 @@ namespace VisionIntegratedPhonebook.Controllers
 
             search.AND.Add("company", "Vision Integrated Properties");
             search.AND.Add("title", "building");
-            search.AND.Add("l", location + "*");
+            search.AND.Add("description", location + "*");
             search.AND.Add("objectClass", "contact");
 
             view.facility = findContact(search);

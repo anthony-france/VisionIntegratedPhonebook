@@ -73,13 +73,43 @@ namespace VisionIntegratedPhonebook.Controllers
             search.AND.Add("DistinguishedName", dn);
 
             view.me = findContact(search);
-            view.Manager = view.me.Manager;
+            List<Contact> managers = new List<Contact>();
+            
+            if (view.me.Manager != null)
+            {
+                if (view.me.Manager.Title == "President")
+                {
+                    search.Clear();
+                    search.AND.Add("company", "Vision Integrated Graphics");
+                    search.AND.Add("title", "President");
+                    search.AND.Add("objectClass", "user");
+                    managers = findContacts(search);
+                }
+                else
+                {
+                    managers.Add(view.me.Manager);
+                }
+            }
+
+            view.Managers = managers;
 
             search.Clear();
             search.AND.Add("company", "Vision Integrated Graphics");
-            search.AND.Add("manager", view.me.DistinguishedName);
             search.AND.Add("objectClass", "user");
 
+            if (view.me.Title == "President" && view.me.DisplayName != "Doug Powell")
+            {
+                LDAPSearchObject searchDP = new LDAPSearchObject();
+                searchDP.AND.Add("displayname", "Doug Powell");
+                searchDP.AND.Add("company", "Vision Integrated Graphics");
+                searchDP.AND.Add("objectClass", "user");
+                Contact doug = findContact(searchDP);
+                search.AND.Add("manager", doug.DistinguishedName);
+            }
+            else
+            {
+                search.AND.Add("manager", view.me.DistinguishedName);
+            }
             view.DirectReports = findContacts(search).OrderBy(c=>c.Department).ThenBy(c=>c.Office).ThenBy(c=>c.DisplayName);
 
             return View(view);
